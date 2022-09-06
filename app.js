@@ -17,10 +17,10 @@ setTimeout(() => {
         userInput = parseInt(prompt("Inserisci i numeri che ti ricordi"));
 
         /*  inserisce solo valori univoci */
-        !userNumbers.includes(userInput) ? userNumbers.push(userInput) : console.log("non includere" + userInput);
+        !userNumbers.includes(userInput) ? userNumbers.push(userInput) : null;
 
         /* fa l'array dei numeri indovinati dall'utente */
-        numbers.includes(userInput) ? equalNumbers.push(userInput) : console.log("non c'è corrispondenza" + userInput);
+        numbers.includes(userInput) ? equalNumbers.push(userInput) : null;
     }
 
     /*   inserisce il risultato nell'html */
@@ -28,7 +28,7 @@ setTimeout(() => {
     equalNumbers.forEach((element) => {
         numbersContainer.innerHTML += `<h2>${element}</h2>`;
     });
-}, 1000 * 11);
+}, 1000 * 10.2);
 
 /* 
 ------------------------------------------------------------------
@@ -55,9 +55,8 @@ function createRandomNumberList() {
     while (numberList.length < 5) {
         let randomNumber = Math.floor(Math.random() * 100 + 1);
 
-        if (!numberList.includes(randomNumber)) {
-            numberList.push(randomNumber);
-        }
+        /* Se il numero è diverso dai precedenti lo inserisco nella lista, se è un doppione NO. Questo genera numeri univoci nella lista */
+        !numberList.includes(randomNumber) ? numberList.push(randomNumber) : null;
     }
 
     return numberList;
