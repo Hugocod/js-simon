@@ -1,39 +1,34 @@
 let numbersContainer = document.getElementById("numbers-container"); /* prendo il container dei numeri */
-let numbers = createRandomNumberList(); /* lista dei 5 numeri */
-let userNumbers = [];
-let equalNumbers = []; /* numeri indicati dall'utente */
+let numbers = createRandomNumberList(); /* Numeri indicati dal pc*/
+let userNumbers = []; /* numeri indicati dall'utente */
+let equalNumbers = []; /* numeri indovinati dall'utente */
 
 displayElements(); /* mostro i numeri in pagina */
 
-/* fa scomparire numbers dopo 30secondi */
+/* fa scomparire numbers dopo 10secondi */
 setTimeout(() => {
     numbersContainer.innerHTML = "";
-}, 1000 * 2);
+    document.getElementById("game-rule").remove();
+}, 1000 * 10);
 
 /* chiede i numeri */
 setTimeout(() => {
     while (userNumbers.length < 5) {
-        userInput = parseInt(prompt("inserisci i numeri che ti ricordi"));
+        userInput = parseInt(prompt("Inserisci i numeri che ti ricordi"));
 
         /*  inserisce solo valori univoci */
-        if (!userNumbers.includes(userInput)) {
-            userNumbers.push(userInput);
-        } else {
-            console.log("non includere");
-        }
+        !userNumbers.includes(userInput) ? userNumbers.push(userInput) : console.log("non includere" + userInput);
 
         /* fa l'array dei numeri indovinati dall'utente */
-        if (numbers.includes(userInput)) {
-            equalNumbers.push(userInput);
-        }
+        numbers.includes(userInput) ? equalNumbers.push(userInput) : console.log("non c'è corrispondenza" + userInput);
     }
 
     /*   inserisce il risultato nell'html */
     numbersContainer.innerHTML += `<h1>Hai indovinato ${equalNumbers.length} numeri</h1>`;
     equalNumbers.forEach((element) => {
-        numbersContainer.innerHTML += `<div>${element}</div>`;
+        numbersContainer.innerHTML += `<h2>${element}</h2>`;
     });
-}, 1000 * 6);
+}, 1000 * 11);
 
 /* 
 ------------------------------------------------------------------
